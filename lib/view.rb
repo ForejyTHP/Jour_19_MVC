@@ -10,9 +10,15 @@ class View
 
   def index_gossips(gossips)
     system("clear")
-    gossips.each { |gossip| puts gossip.author + " : " + gossip.content}
+    puts ("AFFICHAGE DES POTINS\n\n")
     sleep(1)
-    puts "\n\n"
+    if gossips.nil?
+      puts "Il n'y a pas de fichier a afficher.\n\n"
+    else
+      gossips.each { |gossip| puts "  #{gossip.author} : #{gossip.content}"}
+      sleep(1)
+      puts "\n\n"
+    end
   end
 
   def print_header
@@ -23,6 +29,31 @@ class View
     ╚══════════╝      ║regardé ?║
                       ╚═════════╝
 "
+  end
+
+  def print_confirmation(gossip)
+    system("clear")
+    puts "#{gossip.author} : #{gossip.content}\nLe potin a bien ete cree.\n\n"
+    sleep(1)
+  end
+
+  def print_message_for_delete_gossips
+    system("clear")
+    puts "Les potins ont tous ete supprimes.\n\n"
+    sleep(1)
+  end
+
+  def print_message_for_delete_author(author)
+    system("clear")
+    author[0] =~ /[aeiouy]/i ? article = "d\'" : article = "de"
+    puts "Tous les potins #{article} #{author} ont ete supprimes\n\n"
+    sleep(1)
+  end
+
+  def print_message_for_delete_one_gossip(gossip_content)
+    system("clear")
+    puts "Le potin suivant a bien ete supprime : \"#{gossip_content}\"\n\n"
+    sleep(1)
   end
 
   # def index_gossips_of_author(gossips, author)
